@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,6 +15,11 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private ArrayList<String> contents = new ArrayList<String>();
+
 
 
 
@@ -27,7 +34,11 @@ public abstract class Bag {
      * its contents.)
      */
 
+    public Bag(String colour, int capacity){
+        this.color = colour;
+        this.capacity = capacity;
 
+    }
 
 
     /*
@@ -39,6 +50,17 @@ public abstract class Bag {
      */
 
 
+    public String getColor(){
+        return this.color;
+    }
+
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
+
+    public int getCapacity(){
+        return this.capacity;
+    }
 
 
     /*
@@ -46,6 +68,10 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
+
+    public void setColor(String color){
+        this.color = color;
+    }
 
 
 
@@ -61,7 +87,15 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
+    public boolean addItem(String item){
+        if (this.numberOfContents < this.capacity){
+            this.contents.add(item);
+            this.numberOfContents++;
+            return true;
+        }
+        return false;
 
+    }
 
 
 
@@ -76,7 +110,12 @@ public abstract class Bag {
      * @return
      */
 
-
+    public String popItem(){
+        String last = this.contents.get(this.contents.size() -1);
+        this.contents.remove(last);
+        this.numberOfContents --;
+        return last;
+    }
 
 
 
@@ -87,6 +126,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        this.capacity += n;
 
     }
 
